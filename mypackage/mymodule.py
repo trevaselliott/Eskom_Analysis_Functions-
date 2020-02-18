@@ -73,13 +73,24 @@ stop_words_dict = {
 
 ### START FUNCTION ONE 
 def dictionary_of_metrics(items):
-
-    ''' Calculates the mean, median, variance, standard deviation, minimum and maximum of list of items
-        Given list contains only numerical entries
-        Allow a list items as input
-        Return a dict with keys 'mean', 'median', 'std', 'var', 'min', and 'max'
-        Round all values in the dict to 2 decimal place 
-    '''
+    """
+    Calculates the mean,median,standard deviation,variance,minumum value and maximum value
+    
+    Args:
+        items(list):list object containing numerical values.
+    
+    Returns:
+        dictionary: mean,median,standsrd deviation,variance,minumun value, and maximum value.
+        
+    Examples:
+        >>> dictionary_of_metrics([2,4,6,8,10])
+          dictionary_of_metric={'max': 10,
+                                'mean': 6.0,
+                                'median': 6.0,
+                                'min': 2,
+                                'standard deviaion': 2.82,
+                                'variance': 8.0}
+    """                            
     mean = np.mean(items)
     median = np.median(items)
     std = np.std(items, ddof=1)
