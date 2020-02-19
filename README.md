@@ -1,4 +1,4 @@
-# mypackage:
+# Eskom group 8:
 
 This collection of several functions allow for the creation of a insightfull statistics, data cleaning . this creates the ability  to extract meaningfull insight into the current eskom problem: 
 
