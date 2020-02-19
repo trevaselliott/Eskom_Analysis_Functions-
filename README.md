@@ -2,6 +2,8 @@
 
 This collection of several functions allow for the creation of a insightfull statistics, data cleaning . this creates the ability  to extract meaningfull insight into the current eskom problem: 
 
+See note book for addional exmple: group 08 EskomProject.ipyb
+
 required packages: numpy and pandas 
 
 The Data is from:
@@ -32,5 +34,5 @@ Function 7:
               in the dictionary 'stop words'
               
               
-              
+ 
  
