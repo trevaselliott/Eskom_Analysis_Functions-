@@ -111,9 +111,21 @@ def dictionary_of_metrics(items):
 ### START FUNCTION TWO
 def five_num_summary(items):
 
-    '''Returns a dictionary of the five number summary
-       Takes in a list of integers, items
-       Round all numeric values to two decimal places
+    '''
+    summary: five number summary of each of the respective proviences Electricification
+    
+    Args: list of the Electricification by province (EBP) per year items(string) = column header associated to the respective provience 
+    
+    returns:creates a dictionairy of a five number summary ('25%': 'q1','50%':'median','75%':'q3')
+    
+    Egs:
+         five_num_summary(gauteng) == {
+                                        'max': 39660.0,
+                                      'median': 24403.5,
+                                         'min': 8842.0,
+                                         'q1': 18653.0,
+                                         'q3': 36372.0
+                                                          }
     '''
     x = pd.DataFrame(items, columns=['values'])
     item_stat = x.describe()
@@ -127,9 +139,16 @@ def five_num_summary(items):
 ### START FUNCTION THREE
 def date_parser(dates):
 
-    '''Takes dates variable (created at the top), which is a list of dates represented as strings
-       Date is in 'yyyy-mm-dd' and hh:mm:ss format
-       Returns only the date in 'yyyy-mm-dd' format
+    '''
+    summary: The function takes a list of tweet dates times strings and changes the format as stated below
+    
+    args:  list is formatted as 'yyyy-mm-dd hh:mm:ss'. arg type (string) dates 
+    
+    return: a list of strings where each element in the list is returned as a list that contains only the date in the 'yyyy-mm-dd' format.
+    
+    Egs: date_parser(dates[:3]) == ['2019-11-29', '2019-11-29', '2019-11-29']
+    
+    """
     '''
     return [i.split(' ')[0] for i in dates]
 ### END FUNCTION THREE
@@ -137,13 +156,21 @@ def date_parser(dates):
 ### START FUNCTION FOUR
 def extract_municipality_hashtags(df):
 
-    ''' Takes in a pandas dataframe 
-        Extract the municipality from a tweet using the mun_dict
-        Insert the result into a new column named 'municipality' in the same dataframe
-        Use the entry np.nan when a municipality is not found
-        Extract a list of hashtags from a tweet into a new column named 'hashtags' in the same dataframe
-        Use the entry np.nan when no hashtags are found
-        Returns a modified dataframe that includes two new columns that contain information about the municipality and hashtag of the tweet
+    '''    
+    summary: The functions extracts the hashtags from the tweets in the twitter dataframe and creates a new column with the hashtags from the corresponding tweets in list form
+    
+    Args: The twitter dataframe type(DataFrame)
+    
+    return: a new twitter dataframe with a hashtags columns listing the hashtages of the correspeonding tweets 
+    
+    egs: see note book for more comprehesive look 
+    
+    Tweeet: column
+     value:   '#ESKOMFREESTATE #MEDIASTATEMENT : ESKOM SUSPENDS PLANNED ELECTRICITY SUPPLY INTERRUPTIONS TO \nMANGAUNG METROPOLITAN
+    hashtag: column
+     value:   [#ESKOMFREESTATE, #MEDIASTATEMENT] 
+    
+
     '''
    
     for city_key in mun_dict.keys():
@@ -158,13 +185,30 @@ def extract_municipality_hashtags(df):
 ### START FUNCTION FIVE
 def number_of_tweets_per_day(df):
 
-    '''Calculates the number of tweets that were posted per day
-       Takes a pandas dataframe as input
-       The index of the new dataframe is named Date
-       The column of the new dataframe is named 'Tweets', corresponding to the date and number of tweets, respectively
-       Date object is formated as yyyy-mm-dd
-       Return a new dataframe, grouped by daY, with the number of tweets for that day.
     '''
+    summary: This function counts the number of tweets per day from the twitter dataframe 
+    
+    Args: The input is a dataframe  (twitter dataframe)
+    
+    return: It returns a new df with a date index labled dates and a column of the number of tweets per date
+    
+    Egs:
+    	                  Tweets
+            Date	
+       2019-11-20	      18  
+       2019-11-21	      11
+       2019-11-22	      25
+       2019-11-23	      19
+       2019-11-24	      14
+       2019-11-25      	20
+       2019-11-26	      32
+       2019-11-27	      13
+       2019-11-28      	32
+       2019-11-29	      16
+    
+    '''
+  
+  
     df['Date'] = [i.split(' ')[0] for i in df['Date']]
     
     return df.groupby('Date').count()
@@ -173,13 +217,16 @@ def number_of_tweets_per_day(df):
 ### START FUNCTION SIX
 def word_splitter(df):
 
-    ''' Splits the sentences in a dataframe's column into a list of the separate words 
-        and place the result into a new column named 'Split Tweets'
-        The resulting words are lowercases!
-        Takes a pandas dataframe as an input
-        DataFrame contain a column, named 'Tweets'
-        Modify the input dataframe directly
-        Return the modified dataframe.   
+    '''  
+    summary: this function takes (dataframe) the twitter dataframe specfically the tweets column and splits the tweets into a list of words 
+    
+    Args:  a dataframe in this case the twitter df 
+    
+    Return: new column added to the orginal dataframe with a list of individual words sperated where seperated by a spaces
+    
+    Egs: See notebook 
+    
+    
     '''
     df['Split Tweets'] = df['Tweets'].str.lower().str.split() #Tokenization
     
